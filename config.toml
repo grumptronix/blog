@@ -1,0 +1,46 @@
+# Making the baseURL empty allows links to work correctly on both
+# dev and prod
+# UPDATE 2019-03-10: Discovered sitemap.xml is incorrect when baseURL is empty,
+# recommendation is to set to prod URL
+baseURL = "https://blog.mbedded.ninja/"
+
+languageCode = "en-us"
+title = "grumptronix"
+sectionPagesMenu = "main"
+pluralizelisttitles = "false"
+pygmentsCodeFences = "true"
+disqusShortname = ""
+googleAnalytics = ""
+
+# This preserves the capitilization of tags, which is important for 
+# tags such as "CSS", "C++", "GPS", e.t.c.
+preserveTaxonomyNames = "true" 
+
+# Do not use Git commit time to replace lastmod parameter in frontmatter,
+# instead make sure to define lastmod per page (we don't want commits that fix typos e.t.c 
+# to change lastmod)
+enableGitInfo = false
+
+[params]
+    author = "grumptronix"
+    description = "grumptronix auxiliary memory"    
+
+    # This is used by default for Facebook/Twitter links to content if no image is specified in the
+    # frontmatter in the content file itself.
+    # UPDATE: It looks like it's working for twitter, but not for Facebook (no open graph meta tag created?)
+    images = [ "/images/logo/mbedded-ninja-twitter-card-600x300.png" ] 
+
+[blackfriday]
+    fractions = false
+    extensionsmask = ["autolink"] # Prevent naked URL from being converted into links, as this creates problems when the are URLs in figure captions.
+
+[related]
+    threshold= 80
+    includeNewer = true
+    toLower = false
+    [[related.indices]]
+        name = "keywords"
+        weight = 100
+    [[related.indices]]
+        name = "tags"
+        weight = 100

@@ -1,0 +1,989 @@
+* {
+    /* Don't set font family for everything, as it messes with code blocks */
+    /* font-family: 'avenir next' ,'avenir', sans-serif */
+}
+
+/* ========================================================================= */
+/* HEADING AND PARAGRAPH STYLING                                             */
+/* ========================================================================= */
+
+p, h1, h2, h3, ul, li, a, div, td, th, input {    
+    font-family: 'avenir next' ,'avenir', sans-serif;
+}
+
+/* Styling for page titles */
+h1 { 
+    font-size: 2.5em;
+    margin: 0.1em;
+}
+
+h2 { 
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1em;
+}
+
+.flex-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* HEADING NUMBERING */
+
+body {
+    counter-reset: h2counter;
+}
+
+.content h1 {
+    counter-reset: h2counter;
+}
+
+.content h2 {
+    counter-reset: h3counter;
+}
+
+.content h2:before {
+    content: counter(h2counter) ".\0000a0\0000a0";
+    counter-increment: h2counter;
+}
+
+.content h3:before {
+    content: counter(h2counter) "." counter(h3counter) ".\0000a0\0000a0";
+    counter-increment: h3counter;
+}
+
+/* END OF HEADING NUMBERING */
+
+/* Use rem for body, use em for everything else */
+/* This controls the main font size */
+body {
+    font-size: 1.2rem;
+}
+
+input {
+    font-size: 0.9rem;
+}
+
+p, li, div, td, th, input {
+    line-height: 1.7;
+    color: rgb(85, 85, 85);
+}
+@media (max-width: 800px) {
+    p, li, div, td, th {
+        font-size: 3.0vw;
+    }
+}
+@media (min-width: 800px) {
+    p, li, div, td, th {
+        /* font-size: 1.3rem; */
+    }
+}
+
+figcaption p {
+    font-size: 80%;
+    font-style: italic;
+    color: gray;
+    text-align: center;
+}
+
+/* ========================================================================= */
+/* TABLE STYLING                                                             */
+/* ========================================================================= */
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+/* Center tables inside page content */
+div.content table {
+    margin-left: auto; 
+    margin-right: auto;
+    font-size: 1.1rem;
+
+    /* The right-column has break-word set to stop long strings/URLs from going off the side
+    of the page. We need to however set word-break back to normal here otherwise column sizes
+    look weird */
+    word-break: normal;
+}
+
+div.content th {
+    background-color: #505050;
+    color: white;
+    font-weight: normal;
+    padding: 10px;
+}
+
+div.content tr:nth-of-type(even) {
+    background:#E8E8E8;
+}
+
+div.content tr:nth-of-type(odd) {
+    background:#EFEFEF;
+}
+
+div.content td {
+    text-align: center; /* This messes up list identifiers (e.g. bullet points), so we fix this below */
+    padding: 10px;
+}
+
+div.content td ul {
+    display: inline-block; /* This makes list identifiers look good within table cells when contents are centered */
+}
+
+div.content td li {
+    text-align: left; /* Left aligns text in lists */
+}
+
+/* OK, WARNING AND ERROR ROWS IN A TABLE */
+
+div.content tr.ok {
+    background-color: #d7fcd3;
+}
+
+div.content tr.warning {
+    background-color: #f5f5d3;
+}
+
+div.content tr.error {
+    background-color: #ffe3e3;
+}
+
+/* Allow for special paragraphs that have centered text */
+div.content p.centered {
+    text-align: center;
+}
+
+/* Center single images on the page */
+div.box {
+    margin: auto;
+}
+
+
+/* ========================================================================= */
+/* OK, WARNING, ERROR SPANS                                                  */
+/* ========================================================================= */
+
+span.ok {
+    color: #00b300;
+    font-weight: bold;
+}
+
+span.warning {
+    color: orange;
+    font-weight: bold;
+}
+
+span.error {
+    color: red;
+    font-weight: bold;
+}
+
+/* ========================================================================= */
+/* LISTS                                                                     */
+/* ========================================================================= */
+
+ul {
+    padding-inline-start: 7vw;
+}
+@media (min-width: 800px) {
+    ul {
+        padding-inline-start: 40px;
+    }
+}
+
+/* ========================================================================= */
+/* BREADCRUMBS                                                               */
+/* ========================================================================= */
+
+.breadcrumbs {
+    font-size: 1.0em;
+}
+
+.breadcrumbs li {
+    display: inline;
+}
+
+/* ========================================================================= */
+/* CODE                                                                      */
+/* ========================================================================= */
+
+pre, .pre {
+    overflow-x: auto;
+    overflow-y: hidden;
+    overflow:   scroll;
+}
+
+pre {
+    background-color: #222;
+    color: #ddd;
+    white-space: pre;
+    hyphens: none;
+    position: relative;
+}
+
+/* Styling for inline code (no pre element). Make sure not to select code elements
+which have the class `has-jax`, as this is used for inline math and MathJAX
+rendering.
+*/
+code:not(.has-jax) {
+    border-radius: 5px; 
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px; 
+    border: 1px solid #BCBEC0;
+    padding: 2px;     
+}
+
+pre code:not(.has-jax) {
+    display: block;
+    padding: 1.5em 1.5em;
+    white-space: pre;
+    font-size: 0.8em;
+    line-height: 2;
+}
+@media (min-width: 800px) {
+    pre code:not(.has-jax) {
+        font-size: .875rem;
+    }
+}
+
+/* ========================================================================= */
+/* MATHJAX                                                                   */
+/* ========================================================================= */
+
+/* This fixes an issue where the tops of some symbols in an equation where clipped */
+code.has-jax span {
+    clip: unset !important;
+}
+
+/* ========================================================================= */
+/* BLOCK QUOTES                                                              */
+/* ========================================================================= */
+
+blockquote {    
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 1em;
+    padding-left: 1em;
+    border-left: 3px solid #ccc;    
+}
+@media (min-width: 800px) {
+    blockquote {    
+        margin-left: 50px;
+        padding-left: 15px;
+    }
+}
+
+/* markdown wraps the text inside a p element */
+blockquote p {
+    font-size: 1em;
+}
+@media (min-width: 800px) {
+    blockquote p {
+        font-size: 1.2rem;
+    }
+}
+
+/* ========================================================================= */
+/* PAGINATION                                                                */
+/* ========================================================================= */
+
+/* Pagination HTML is created with the Hugo template: {{ template "_internal/pagination.html" . }} */
+
+ul.pagination {
+
+    width: 100%;
+    padding: 0;
+
+    /* Add some vertical margin */
+    margin: 1em 0;
+
+    /* Display page numbers and arrows in row, not column */
+    display: flex;
+    justify-content: center;
+
+    /* Hide the bullets */
+    list-style-type: none;
+}
+
+ul.pagination li {
+    /* Add space between each number and arrow */
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+/* ========================================================================= */
+/* POST STYLING                                                              */
+/* ========================================================================= */
+
+/* Disable link styling for post titles */
+.post-title {
+    text-decoration: none;
+    color: inherit;
+}
+
+article {
+    /* This forces content to stay within the bounds of the article element and wrap if needed */
+    width: 100%;
+}
+
+/* ========================================================================= */
+/* MAIN PAGE STYLING                                                         */
+/* ========================================================================= */
+
+html {
+    height: 100%;
+}
+
+body {
+    /* height: 100%; */
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(241, 241, 241);
+}
+@media (min-width: 800px) {
+    body {
+        height: 100%;        
+        flex-direction: row;        
+    }
+}
+
+.left-column {
+    width: 90%;
+}
+
+.left-column-outer {
+    width: 100%;
+    margin: auto;      
+    display: flex;     
+    flex-direction: column;
+    align-items: center; 
+}
+@media (min-width: 800px) {
+    .left-column-outer {
+        width: 30%;
+        max-width: 450px;
+    }
+}
+
+
+/* Left column contains logo and menu */
+
+@media (max-width: 800px) {
+    .left-column {
+        min-height: 100%;
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        justify-content: space-around;
+
+        background-color: white;
+        /* width: 30%; */
+        /* max-width: 450px; */
+
+        /* Add subtle border to left-hand column */
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0.15); 
+    }
+
+    .header-section-2 {
+        margin: 1.0em;
+        flex-grow: 2;
+    }
+
+    .header-section-3 {
+        display: none;
+    }
+}
+
+@media (min-width: 800px) {
+    .left-column {
+        min-height: 100%;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-content: flex-start;
+
+        background-color: white;
+        /* width: 30%; */
+        /* max-width: 450px; */
+
+        /* Add subtle border to left-hand column */
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0.15); 
+    }
+}
+
+.header-section-1 {    
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    flex-grow: 0;
+    width: 60%;
+}
+@media (min-width: 800px) {
+    .header-section-1 {
+        width: 100%;
+    }
+}
+
+.logo-img {
+    width: 70%;
+
+    /* max-width prevents image getting too large when on mobile device */
+    max-width: 300px;
+}
+
+.logo-img img {
+    width: 100%;
+}
+
+.site-title {
+    color: rgb(51, 51, 51);
+    font-size: 5vw;
+    font-weight: 700;
+
+    width: 80%;
+    text-align: center;
+}
+@media (min-width: 800px) {
+    .site-title {
+        font-size: 24px;
+    }
+}
+
+
+/* Disable any link styling for the site title */
+.site-title a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.site-description {
+    color: rgb(51, 51, 51);
+    font-size: 3vw;
+    font-weight: 400;
+
+    margin-top: 7px;
+    width: 60%;
+    text-align: center;
+}
+@media (min-width: 800px) {
+    .site-description {
+        font-size: 1.0rem;
+    }
+}
+
+/* ========================================================================= */
+/* RECENT UPDATES                                                            */
+/* ========================================================================= */
+
+div.recent-updates {
+    margin: 1em;
+}
+
+div.recent-updates h2 {
+    font-size: 1.0em;
+    margin: 0px;
+}
+
+div.recent-updates ul {
+    padding-inline-start: 1em;
+}
+
+div.recent-updates .modified {
+    font-size: 0.7em;
+    margin: 0px;
+    margin-left: 10px;
+    font-style: italic;
+}
+
+div.recent-updates .description {
+    font-size: 0.8em;
+    margin: 0px;
+    margin-left: 10px;
+}
+
+.right-column {
+    width: 100%;
+}
+@media (min-width: 800px) {
+    .right-column {
+        width: 70%;
+    }
+}
+
+/* Right column contains page content */
+.right-column {
+    height: 100%;
+    flex: 1;
+
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.inner-right-column {
+    width: 90%;
+    max-width: 900px;
+    margin-top: 5%;
+    background-color: white;
+
+    /* Add subtle border to right-hand content */
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.15); 
+
+    /* Stops long URLs and strings going of the right-hand side of the column */
+    word-break: break-word;
+}
+
+/* Padding between border of right-hand inner column and content */
+main {
+    padding: 5vw;
+}
+@media (min-width: 800px) {
+    main {
+        padding: 80px;
+    }
+}
+
+.homepage-post-content {
+    padding-bottom: 50px;
+}
+
+/* Add a bit of space below the footer before the page ends */
+footer {
+    padding-bottom: 20px;
+}
+
+/* ========================================================================= */
+/* IMAGE STYLING                                                             */
+/* ========================================================================= */
+
+figure {
+    /* Setting these margins to 0 fixes the issue where the user agent stylesheet would set them to
+    40px and prevent the images for spanning the entire width of the content div */
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
+
+figure img {
+    width: 100%; /* Force images to stay within the confines of the parent container */
+}
+
+/* ========================================================================= */
+/* PROMPTS                                                                   */
+/* ========================================================================= */
+
+aside.prompt {
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    border-left-width: 4px;
+    border-left-style: solid;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
+    box-sizing: border-box;
+}
+
+aside.prompt .title {    
+    font-weight: 700;
+    padding-left: 1em;
+}
+
+aside.prompt .title .title-text {
+    padding-left: 1em;
+}
+
+aside.prompt div.content {
+    margin: 0;
+    padding-left: 1em;
+}
+
+aside.prompt div.content p {
+    margin: 0;
+    padding: 0.8em;
+    font-size: 0.8em;
+}
+
+/* QUESTION */
+
+aside.question {
+    border-left-color: #64dd17;
+}
+
+aside.question .title {
+    background-color: rgba(100,221,23,.1);
+}
+
+aside.question .title .icon {
+    color: #64dd17;
+}
+
+/* WARNING */
+
+aside.warning {
+    border-left-color: #ff9100;
+}
+
+aside.warning .title {
+    background-color: rgba(255, 145, 0, 0.1);
+}
+
+aside.warning .title .icon {
+    color: #ff9100;
+}
+
+/* NOTE */
+
+aside.note {
+    border-left-color: #651fff;
+}
+
+aside.note .title {
+    background-color: rgba(101, 31, 255, 0.1);
+}
+
+aside.note .title .icon {
+    color: #651fff;
+}
+
+/* ========================================================================= */
+/* DISQUS STYLING                                                             */
+/* ========================================================================= */
+
+/* Divider between the end of the page/related content/tags and the start of the Disqus comments */
+.disqus-divider {
+    height: 30px;
+}
+
+/* ========================================================================= */
+/* MENU STYLING                                                         */
+/* ========================================================================= */
+
+.menu {
+    display: block;
+
+    /* The z-index of the photo overlay is 1500, so make sure this is less! */
+    z-index: 1000;
+
+    margin: 0;
+    padding: 0;
+}
+@media (min-width: 800px) {
+    .menu {
+        margin-top: 20px;
+    }
+}
+
+.menu li {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    /* width: 180px; */
+}
+
+.menu li.dropdown:hover > .submenu {
+    display: block;
+}
+
+.menu li a {
+    display: flex;
+
+    /* This sets the width of the main menu */
+    width: 20vw;
+
+    /* Below padding controls spacing of adjacent menu elements */
+    padding: 1.5vw 8px; 
+    /* padding: 12px; */
+    background: rgb(34, 34, 34);
+    color: #fff;
+    text-decoration: none;
+}
+@media (min-width: 800px) {
+    .menu li a {
+        width: 184px; /* Make sure that this number + 2x horizontal padding below = 200px */
+        padding: 12px 8px; 
+    }
+}
+
+.menu .menu-text {
+    width: 165px;
+    color: #fff;
+    line-height: 1.0;
+    font-size: 2.7vw;
+
+    /* Center the text vertically */
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+@media (min-width: 800px) {
+    .menu .menu-text {
+        font-size: 0.9rem;
+    }
+}
+
+/* Hide the arrows on mobile, as we don't show the submenus either 
+(it's hard to hover on a mobile device) */
+.menu .right-arrow {
+    color: #fff;
+    /* line-height: 1.0; */
+    font-size: 2vw;
+    display: none;
+}
+@media (min-width: 800px) {
+    .menu .right-arrow {
+        font-size: 0.7rem;
+        display: block;
+    }
+}
+
+.menu li a:hover {
+    background: grey;
+    text-decoration: underline;
+}
+
+.menu .submenu {
+    display: none;
+    top: 0px; /* This brings the sub-menu vertically in-line with the menu */
+}
+
+.submenu .menu-text {
+    color: rgb(85, 85, 85);
+}
+
+.submenu {
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    left: 200px;
+    list-style-type: none;
+    display: block;
+    width: 200px;
+    z-index: 9;
+}
+
+/* Hide the submenu if on mobile, only show when on desktop,
+as you cannot easily hover on touch screen */
+.submenu li {
+    display: none;
+    margin: 0;
+}
+@media (min-width: 800px) {
+    .submenu li {
+        display: block;
+    }
+}
+
+.submenu li a {
+    display: flex;
+    background: rgb(241, 241, 241);
+    color: rgb(34, 34, 34);
+    /* padding: 8px 6px; */
+    /* padding: 0px; */
+    /* margin-bottom: 1px; */
+}
+
+.submenu .right-arrow {
+    color: rgb(34, 34, 34);
+    line-height: 1.0;
+    font-size: 0.7rem;
+}
+
+.menu .submenu > li.dropdown:hover > .submenu {
+    display: block;
+}
+
+.menu .submenu .submenu {
+    position: absolute;
+    left: 200px;
+    top: 0px;
+}
+
+/* ========================================================================= */
+/* SHURIKEN                                                                  */
+/* ========================================================================= */
+
+#shuriken-rel {
+    position: static;
+}
+
+#shuriken-abs {
+    position: static;
+    left: 0px;
+}
+
+#shuriken-fixed {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#shuriken-image {
+    width: 50px;
+    cursor: pointer;
+}
+
+#shuriken-image.animate {
+    animation: spin 0.5s ease 1;
+}
+
+@keyframes spin { 
+    100% { 
+        -webkit-transform: rotate(360deg);
+        transform:rotate(360deg);
+    }
+}
+
+#shuriken-count {
+    font-weight: bold;
+}
+
+#shuriken-text {
+    width: 40%;
+    font-size: 0.7em;
+    text-align: center;
+}
+
+@media (min-width: 800px) {
+
+    #shuriken-rel {
+        position: relative;
+    }
+
+    #shuriken-abs {
+        position: absolute;
+        left: -150px;
+    }
+
+    #shuriken-fixed {
+        position: fixed;
+        width: 50px;
+        top: 100px;
+    }
+
+    #shuriken-text {
+        width: 80px;
+    }
+}
+
+
+/* ========================================================================= */
+/* FOOTER                                                                    */
+/* ========================================================================= */
+
+/* Footer contains copyright and "Powered by Hugo" */
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+} 
+
+/* ========================================================================= */
+/* MATRIX (using a table)                                                    */
+/* ========================================================================= */
+
+/* This adds matrix looking brackets to the side of the table */
+
+.matrix {
+    position: relative;
+}
+
+.matrix:before, .matrix:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    border: 1px solid #000;
+    width: 6px;
+    height: 100%;
+}
+.matrix:before {
+    left: -6px;
+    border-right: 0px;
+}
+.matrix:after {
+    right: -6px;
+    border-left: 0px;
+}
+
+table.matrix tr:nth-of-type(even) {
+    background: white;
+}
+
+table.matrix tr:nth-of-type(odd) {
+    background: white;
+}
+
+.matrix td {
+    padding: 5px;    
+    text-align: center;
+}
+
+.matrix {
+    border-spacing: 0px;
+}
+
+.matrix td {
+    width: 2em;
+}
+
+/* ========================================================================= */
+/* CALCULATORS                                                               */
+/* ========================================================================= */
+
+.calculator input {
+    width: 6em;
+    height: 1.5em;
+}
+
+.calculator table tr:nth-of-type(even) {
+    background: white;
+}
+
+.calculator table tr:nth-of-type(odd) {
+    background: white;
+}
+
+/* ========================================================================= */
+/* HBOX and VBOX                                                             */
+/* ========================================================================= */
+
+/* Handy hbox and vbox elements that can be used around the site to layout child
+elements */
+
+div.hbox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+div.vbox {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ========================================================================= */
+/* STRIKE-TRHOUGH (DEL)                                                      */
+/* ========================================================================= */
+
+del {
+    text-decoration: line-through;
+    background-color: #fbb;
+    color: #555;
+}
+
+
+/* ========================================================================= */
+/* REFERENCES                                                                */
+/* ========================================================================= */
+
+.reference {
+    
+}
