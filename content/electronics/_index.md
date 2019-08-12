@@ -1,7 +1,7 @@
 ---
 author: gbmhunter
-date: 2014-01-30
+date: 2011-09-02
 draft: false
-title: PIC And dsPIC Family
+title: Electronics
 type: page
 ---
